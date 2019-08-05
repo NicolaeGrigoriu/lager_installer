@@ -1,0 +1,133 @@
+{
+    "name": "drupalcommerce/project-base",
+    "description": "Commerce 2.x project template",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "commerce_base": {
+            "type": "vcs",
+            "url": "https://github.com/drupalcommerce/commerce_base"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
+    },
+    "require": {
+        "ext-curl": "*",
+        "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal-composer/drupal-scaffold": "^2.5",
+        "drupal/admin_toolbar": "~1.0",
+        "drupal/bootstrap_layouts": "^5.1",
+        "drupal/colorbox": "^1.4",
+        "drupal/commerce": "~2.0",
+        "drupal/commerce_admin_checkout": "^1.0@beta",
+        "drupal/commerce_autosku": "^2.0@beta",
+        "drupal/commerce_feeds": "^1.0@alpha",
+        "drupal/commerce_order_pdf": "1.x-dev",
+        "drupal/commerce_product_variation_csv": "^1.0",
+        "drupal/commerce_reports": "^1.0@beta",
+        "drupal/commerce_shipping": "^2.0@beta",
+        "drupal/commerce_stock": "^1.0@alpha",
+        "drupal/console": "^1.0.2",
+        "drupal/core": "^8.6.0",
+        "drupal/css_editor": "^1.2",
+        "drupal/estore": "^1.12",
+        "drupal/feeds_stock": "^1.1",
+        "drupal/fontawesome": "^2.13",
+        "drupal/search_api": "~1.0",
+        "drupal/swiftmailer": "~1.0",
+        "drupal/token": "~1.0",
+        "drupalcommerce/commerce_base": "dev-8.x-1.x",
+        "oomphinc/composer-installers-extender": "^1.1",
+        "webflo/drupal-finder": "^1.0",
+        "webmozart/path-util": "^2.3"
+    },
+    "require-dev": {
+        "webflo/drupal-core-require-dev": "^8.7.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        },
+        "drupal-scaffold": {
+            "initial": {
+                ".editorconfig": "../.editorconfig",
+                ".gitattributes": "../.gitattributes"
+            }
+        }
+    }
+}
